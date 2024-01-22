@@ -1,0 +1,27 @@
+{
+    "SIGN_UP_HERE":"Sign Up here!",
+    "EMAIL":"Email",
+    "PASSWORD":"Contraseña",
+    "orConnectWith":"O conectarse con",
+    "LOG_IN":"Iniciar sesión",
+    "SIGN_UP":"Sign Up",
+    "ADD_NEW_TASK":"Añadir nueva tarea",
+    "CANCEL":"Cancelar",
+    "LOGOUT":"Cerrar sesión",
+    "HI_NAME": "Hola @name!",
+    "TODO_LIST_OF":"toDO list de",
+    "NOTE_DETAILS":"Detalles de la tarea",
+    "TITLE":"Título",
+    "WELCOME":"Bienvenido",
+    "DESCRIPTION":"Descripción",
+    "COMPLETED":"Completada",
+    "SAVE":"Guardar",
+    "DELETE":"Eliminar",
+    "SAVED_SUCCESS":"Guardada exitosamente",
+    "DELETE_SUCCESS":"Nota eliminada exitosamente",
+    "TRA_IN_PROGRESS":"Traducción en proceso",
+    "TRA_IN_PROGRESS_DESC":"Traducción en proceso, por favor esperar unos segundos.",
+    "NO_NOTES":"Aún no has creado notas"
+
+
+}

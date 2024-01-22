@@ -1,0 +1,26 @@
+{
+    "SIGN_UP_HERE":"Sign Up here!",
+    "EMAIL":"Email",
+    "PASSWORD":"Password",
+    "orConnectWith":"Or Connect with",
+    "LOG_IN":"Log in",
+    "SIGN_UP":"Sign Up",
+    "ADD_NEW_TASK":"Add new task",
+    "CANCEL":"Cancel",
+    "LOGOUT":"Logout",
+    "HI_NAME": "Hi @name!",
+    "TODO_LIST_OF":"toDO list of",
+    "NOTE_DETAILS":"Note details",
+    "TITLE":"Title",
+    "WELCOME":"Welcome",
+    "DESCRIPTION":"Description",
+    "COMPLETED":"Completed",
+    "SAVE":"Save",
+    "DELETE":"Delete",
+    "SAVED_SUCCESS":"Successfully saved",
+    "DELETE_SUCCESS":"Successfully deleted",
+    "TRA_IN_PROGRESS":"Translation in process",
+    "TRA_IN_PROGRESS_DESC":"Translation in process, please wait a few seconds",
+    "NO_NOTES":"You don't have notes yet"
+
+}
