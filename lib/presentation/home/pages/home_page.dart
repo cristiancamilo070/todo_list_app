@@ -283,8 +283,8 @@ class HomePage extends GetView<HomeController> {
                   ),
                 ),
                 heightSpace4,
-                if (note['descriptionTranslated'] != '' ||
-                    note['titleTranslated'] != '')
+                if ((note['descriptionTranslated'] as String?) != '' &&
+                    (note['titleTranslated'] as String?) != '')
                   ListTile(
                     title: FaIcon(
                       FontAwesomeIcons.language,
@@ -338,7 +338,7 @@ class HomePage extends GetView<HomeController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(note['titleTranslated'],
+          Text((note['titleTranslated'] as String?) ?? '',
               style: AppTheme.style.bold.copyWith(
                 fontSize: AppTheme.fontSize.f12,
                 color: isChecked
@@ -347,7 +347,7 @@ class HomePage extends GetView<HomeController> {
               )).paddingOnly(top: 4.h),
           heightSpace4,
           Text(
-            note['descriptionTranslated'],
+            (note['descriptionTranslated'] as String?) ?? '',
             style: TextStyle(
               fontSize: AppTheme.fontSize.f12,
               color: isChecked
