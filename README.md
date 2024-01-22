@@ -18,7 +18,7 @@ A Flutter app for managing your todo list with Firebase authentication, Firestor
 
 - **Firebase Functions:**
 
-  - Add, edit, delete, and read notes using Firebase Functions
+  - Add, edit, delete, and read notes using Firebase.
   - Translate user notes in real-time using the Google Cloud Translate API on Node.js
 
 - **Firebase Crashlytics:**
