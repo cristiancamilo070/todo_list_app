@@ -17,6 +17,7 @@ class FirestoreRepositoryImpl extends FirestoreRepository {
     String description,
     DateTime date,
     bool state,
+    String status,
   ) async {
     try {
       await firestoreProvider.addNote(
@@ -24,6 +25,7 @@ class FirestoreRepositoryImpl extends FirestoreRepository {
         description,
         date,
         state,
+        status,
       );
       return right(null);
     } catch (e) {
@@ -63,6 +65,7 @@ class FirestoreRepositoryImpl extends FirestoreRepository {
     DateTime date,
     bool state,
     bool language,
+    String status,
   ) async {
     try {
       await firestoreProvider.updateNote(
@@ -72,6 +75,7 @@ class FirestoreRepositoryImpl extends FirestoreRepository {
         date,
         state,
         language,
+        status,
       );
       return right(null);
     } catch (e) {

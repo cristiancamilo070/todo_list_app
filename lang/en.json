@@ -21,6 +21,16 @@
     "DELETE_SUCCESS":"Successfully deleted",
     "TRA_IN_PROGRESS":"Translation in process",
     "TRA_IN_PROGRESS_DESC":"Translation in process, please wait a few seconds",
-    "NO_NOTES":"You don't have notes yet"
+    "NO_NOTES":"You don't have notes yet",
+    "TO_DO":"To Do",
+    "IN_PROGRESS":"In Progress",
+    "DONE":"Done",
+    "NOTES":"Notes",
+    "TASK_DETAILS":"Task details",
+     "DRAG_HERE": "Drag tasks here",
+    "STATUS_UPDATED":" Status updated",
+    "NO_TASKS": "'No tasks",
+    "NO_DATA": "No data"
+    
 
 }

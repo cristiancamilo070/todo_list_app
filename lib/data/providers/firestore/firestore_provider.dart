@@ -12,6 +12,7 @@ class FirestoreProvider {
     String description,
     DateTime date,
     bool state,
+    String status, // New field: "To Do", "In Progress", "Done"
   ) async {
     try {
       User? user = _auth.currentUser;
@@ -23,6 +24,7 @@ class FirestoreProvider {
           'description': description,
           'date': date,
           'state': state,
+          'status': status,
           'language': false,
           'titleTranslated': '',
           'descriptionTranslated': ''
@@ -56,6 +58,7 @@ class FirestoreProvider {
     DateTime date,
     bool state,
     bool language,
+    String status,
   ) async {
     try {
       await _firestore.collection('todo').doc(noteId).update({
@@ -64,6 +67,7 @@ class FirestoreProvider {
         'date': date,
         'state': state,
         'language': language,
+        'status': status,
       });
     } catch (e) {
       print('Error updating note: $e');

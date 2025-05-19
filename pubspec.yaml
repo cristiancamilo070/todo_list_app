@@ -28,39 +28,38 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  animate_do: ^3.1.2
+  animate_do: ^4.2.0
   auto_size_text: ^3.0.0
-  cloud_firestore: ^4.14.0
+  cloud_firestore: ^5.6.7
   crypto: ^3.0.3
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   dropdown_button2: ^2.3.9
-  firebase_auth: ^4.16.0
-  firebase_core: ^2.24.2
-  firebase_crashlytics: ^3.4.9
-  firebase_messaging: ^14.7.10
-  firebase_storage: ^11.6.0
+  firebase_auth: ^5.5.3
+  firebase_core: ^3.13.0
+  # firebase_messaging:
+  firebase_storage: ^12.4.5
   flutter:
     sdk: flutter
   flutter_advanced_drawer: ^1.3.5
   flutter_easyloading: ^3.0.5
-  flutter_localization: ^0.2.0
+  flutter_localization: ^0.3.2
   flutter_screenutil: ^5.9.0
   flutter_secure_storage: ^9.0.0
-  flutter_slidable: ^3.0.1
+  flutter_slidable: ^4.0.0
   flutter_svg: ^2.0.9
   font_awesome_flutter: ^10.6.0
   get: ^4.6.6
-  google_sign_in: ^6.2.1
+  google_sign_in: ^6.3.0
   humanize_duration: ^0.0.1+1
-  intl: ^0.18.0
+  intl: ^0.19.0
   kf_drawer: ^1.2.1
-  package_info_plus: ^5.0.1
+  package_info_plus: ^8.3.0
   shared_preferences: ^2.2.2
-  sign_in_with_apple: ^5.0.0
+  sign_in_with_apple:
 
 dev_dependencies:
-  flutter_lints: ^2.0.0
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
 

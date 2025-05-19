@@ -8,6 +8,7 @@ abstract class FirestoreRepository {
     String description,
     DateTime date,
     bool state,
+    String status,
   );
   Stream<Either<BaseException, QuerySnapshot>> getNotes();
 
@@ -18,6 +19,7 @@ abstract class FirestoreRepository {
     DateTime date,
     bool state,
     bool language,
+    String status,
   );
   Future<Either<BaseException, void>> deleteNote(String noteId);
 }

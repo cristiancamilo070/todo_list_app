@@ -17,6 +17,7 @@ class UpdateNoteUseCase extends BaseUseCases<void, UpdateNoteParams> {
       params.date,
       params.state,
       params.language,
+      params.status,
     );
   }
 }
@@ -28,6 +29,7 @@ class UpdateNoteParams {
   final DateTime date;
   final bool state;
   final bool language;
+  final String status;
 
   UpdateNoteParams({
     required this.noteId,
@@ -36,5 +38,6 @@ class UpdateNoteParams {
     required this.date,
     required this.state,
     required this.language,
+    required this.status,
   });
 }

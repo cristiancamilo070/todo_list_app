@@ -7,10 +7,11 @@ import 'package:todo_list_app/core/widgets/animations/animations.dart';
 
 class HomeFloatingButton extends StatelessWidget {
   final Function() onTap;
+
   const HomeFloatingButton({
-    Key? key,
+    super.key,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -15,6 +15,7 @@ class AddNoteUseCase extends BaseUseCases<void, NoteParams> {
       params.description,
       params.date,
       params.state,
+      params.status,
     );
   }
 }
@@ -24,11 +25,13 @@ class NoteParams {
   final String description;
   final DateTime date;
   final bool state;
+  final String status;
 
   NoteParams(
     this.title,
     this.description,
     this.date,
     this.state,
+    this.status,
   );
 }
