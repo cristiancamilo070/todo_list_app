@@ -220,17 +220,8 @@ class HomePage extends GetView<HomeController> {
             child: StreamBuilder<Either<BaseException, QuerySnapshot>>(
               stream: controller.getNotesByStatus(status),
               builder: (context, snapshot) {
-                // Verificar estados de carga
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                    child: CircularProgressIndicator(
-                      color: color,
-                    ),
-                  );
-                }
-
+                // Error en el stream
                 if (snapshot.hasError) {
-                  print('Error in StreamBuilder: ${snapshot.error}');
                   return Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -251,14 +242,14 @@ class HomePage extends GetView<HomeController> {
                   );
                 }
 
+                // No hay data todavía o no hay datos válidos → muestra la columna vacía
                 if (!snapshot.hasData || snapshot.data == null) {
                   return _buildEmptyColumn(color);
                 }
 
-                // Manejar el Either correctamente
+                // Manejar el Either<BaseException, QuerySnapshot>
                 return snapshot.data!.fold(
                   (exception) {
-                    print('BaseException: ${exception.message}');
                     return Center(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -279,9 +270,48 @@ class HomePage extends GetView<HomeController> {
                     );
                   },
                   (querySnapshot) {
+                    // Si no hay documentos, mostrar "vacío"
+                    if (querySnapshot.docs.isEmpty) {
+                      return DragTarget<Map<String, dynamic>>(
+                        onWillAccept: (data) {
+                          if (data == null) return false;
+                          if (!data.containsKey('id') ||
+                              !data.containsKey('status')) return false;
+                          if (data['status'] == status) return false;
+                          return true;
+                        },
+                        onAccept: (taskData) {
+                          controller.updateTaskStatus(
+                            taskData['id'],
+                            status,
+                          );
+                        },
+                        builder: (context, candidateData, rejectedData) {
+                          final bool isHovering = candidateData.isNotEmpty;
+                          // NOTA: El truco es que el DragTarget debe ocupar todo el alto del Expanded,
+                          // así que usamos SizedBox.expand para forzar el espacio completo.
+                          return SizedBox.expand(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: isHovering
+                                    ? color.withOpacity(0.15)
+                                    : Colors.transparent,
+                                borderRadius: BorderRadius.circular(8.r),
+                                border: isHovering
+                                    ? Border.all(color: color, width: 2.w)
+                                    : null,
+                              ),
+                              alignment: Alignment.center,
+                              child: _buildEmptyPlaceholder(color),
+                            ),
+                          );
+                        },
+                      );
+                    }
+
+                    // Si hay documentos, renderizar la lista con DragTarget
                     return DragTarget<Map<String, dynamic>>(
                       onWillAccept: (data) {
-                        print('onWillAccept for $status: $data');
                         if (data == null) return false;
                         if (!data.containsKey('id') ||
                             !data.containsKey('status')) {
@@ -291,17 +321,13 @@ class HomePage extends GetView<HomeController> {
                         return true;
                       },
                       onAccept: (taskData) {
-                        print('Accepted task: ${taskData['id']} to $status');
                         controller.updateTaskStatus(
                           taskData['id'],
                           status,
                         );
                       },
                       builder: (context, candidateData, rejectedData) {
-                        // Estilos cuando se está arrastrando sobre la columna
                         final bool isHovering = candidateData.isNotEmpty;
-
-                        // Construir el contenedor principal
                         return Container(
                           decoration: BoxDecoration(
                             color: isHovering
@@ -312,19 +338,15 @@ class HomePage extends GetView<HomeController> {
                                 ? Border.all(color: color, width: 2.w)
                                 : null,
                           ),
-                          // Si no hay documentos, mostrar un mensaje "vacío"
-                          child: querySnapshot.docs.isEmpty
-                              ? _buildEmptyPlaceholder(color)
-                              : ListView.builder(
-                                  padding: EdgeInsets.all(8.w),
-                                  itemCount: querySnapshot.docs.length,
-                                  itemBuilder: (context, index) {
-                                    DocumentSnapshot task =
-                                        querySnapshot.docs[index];
-                                    return _buildDraggableTask(
-                                        context, task, status, color);
-                                  },
-                                ),
+                          child: ListView.builder(
+                            padding: EdgeInsets.all(8.w),
+                            itemCount: querySnapshot.docs.length,
+                            itemBuilder: (context, index) {
+                              DocumentSnapshot task = querySnapshot.docs[index];
+                              return _buildDraggableTask(
+                                  context, task, status, color);
+                            },
+                          ),
                         );
                       },
                     );
@@ -338,7 +360,6 @@ class HomePage extends GetView<HomeController> {
     );
   }
 
-// Widget para mostrar cuando una columna está vacía
   Widget _buildEmptyPlaceholder(Color color) {
     return Center(
       child: Column(
