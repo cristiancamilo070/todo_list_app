@@ -83,44 +83,41 @@ class SignUpPage extends GetView<AuthController> {
   Widget loginBottoms() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 16.w),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          PrimaryButton(
-            text: 'SIGN_UP'.tr,
-            color: AppTheme.colors.appTertiary,
-            onPressed: () {
-              controller.signUpWithPassword(
-                controller.emailController.value.text,
-                controller.emailController.value.text,
-              );
-            },
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        PrimaryButton(
+          text: 'SIGN_UP'.tr,
+          color: AppTheme.colors.appTertiary,
+          onPressed: () {
+            controller.signUpWithPassword(
+              controller.emailController.value.text,
+              controller.emailController.value.text,
+            );
+          },
+        ),
+        heightSpace20,
+        Text(
+          'orConnectWith'.tr,
+          textAlign: TextAlign.center,
+          style: AppTheme.style.medium.copyWith(
+            fontSize: AppTheme.fontSize.f16,
+            color: AppTheme.colors.appGrey,
           ),
-          heightSpace20,
-          Text(
-            'orConnectWith'.tr,
-            textAlign: TextAlign.center,
-            style: AppTheme.style.medium.copyWith(
-              fontSize: AppTheme.fontSize.f16,
-              color: AppTheme.colors.appGrey,
-            ),
-          ),
-          heightSpace15,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // AppleSocialButton(onPressed: () {
-              // controller.signInWithApple();
-              // }),
-              // widthSpace15,
-              GmailSocialButton(onPressed: () {
-                controller.signInWithGoogle();
-              }),
-            ],
-          ),
-          heightSpace15,
-        ],
-      ),
+        ),
+        heightSpace15,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // AppleSocialButton(onPressed: () {
+            // controller.signInWithApple();
+            // }),
+            // widthSpace15,
+            GmailSocialButton(onPressed: () {
+              controller.signInWithGoogle();
+            }),
+          ],
+        ),
+        heightSpace15,
+      ]),
     );
   }
 }

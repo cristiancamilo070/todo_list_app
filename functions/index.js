@@ -14,7 +14,8 @@ exports.updateNoteWithTranslation = functions.firestore
     const previousNote = change.before.data();
     const previousLanguage = previousNote.language;
 
-  // Verifica si el campo 'language' cambió de false a true o viceversa
+  // Verifica si el campo 'language' cambió de 
+  // false a true o viceversa 
   if (originalLanguage !== previousLanguage) {
     const originalTitle = updatedNote.title;
     const originalDescription = updatedNote.description;
