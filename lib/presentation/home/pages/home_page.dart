@@ -1,6 +1,6 @@
 // Implementación corregida de HomePage para resolver el problema de overflow
 
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, avoid_print
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
@@ -62,7 +62,13 @@ class HomePage extends GetView<HomeController> {
                 controller.refreshTrigger.value;
                 return Column(
                   children: [
-                    HomeNavbar(),
+                    Stack(children: [
+                      HomeNavbar(),
+                      Align(
+                        alignment: Alignment.center,
+                        child: header().paddingOnly(top: 24.h, left: 24.w),
+                      ),
+                    ]),
                     SizedBox(height: 16.h),
                     Expanded(
                       child: kanbanBoard(context),
@@ -90,7 +96,7 @@ class HomePage extends GetView<HomeController> {
       () => Column(
         children: [
           Text(
-            'TODO_LIST_OF'.tr,
+            'TASK_MANAGER'.tr,
             style: TextStyle(
               color: AppTheme.colors.appPrimary,
               fontSize: AppTheme.fontSize.f24,
@@ -534,6 +540,8 @@ class HomePage extends GetView<HomeController> {
     );
   }
 
+  /// Do not delete. This actually works but we don't need it for now
+  ///
   // Widget _buildTranslatedText(DocumentSnapshot task, bool isCompleted) {
   //   return Container(
   //     margin: EdgeInsets.only(top: 8.h),

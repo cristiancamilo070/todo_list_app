@@ -18,7 +18,7 @@ import 'package:todo_list_app/domain/use_cases/auth/log_out_use_case.dart';
 import 'package:todo_list_app/domain/use_cases/firestore/add_note_use_case.dart';
 import 'package:todo_list_app/domain/use_cases/firestore/delete_note_use_case.dart';
 import 'package:todo_list_app/domain/use_cases/firestore/edit_note_use_case.dart';
-import 'package:todo_list_app/domain/use_cases/firestore/get_notes_use_case.dart';
+// import 'package:todo_list_app/domain/use_cases/firestore/get_notes_use_case.dart';
 
 class HomeController extends BaseGetxController {
   // Los servicios y casos de uso se mantienen igual
@@ -45,10 +45,8 @@ class HomeController extends BaseGetxController {
   RxString noteId = ''.obs;
   RxString taskStatus = 'toDo'.obs;
 
-  // Nuevo trigger para forzar actualizaciones
   RxBool refreshTrigger = false.obs;
 
-  // Nuevas listas observables para las tareas por estado
   RxList<DocumentSnapshot> todoTasks = <DocumentSnapshot>[].obs;
   RxList<DocumentSnapshot> inProgressTasks = <DocumentSnapshot>[].obs;
   RxList<DocumentSnapshot> doneTasks = <DocumentSnapshot>[].obs;
@@ -80,7 +78,7 @@ class HomeController extends BaseGetxController {
 
     ever(taskStatus, (_) => triggerRefresh());
 
-    _initTaskListeners();
+    //  _initTaskListeners();
 
     getUser();
 
@@ -89,41 +87,11 @@ class HomeController extends BaseGetxController {
     });
   }
 
-  void _initTaskListeners() {
-    // Escuchar tareas "to do"
-    getNotesByStatus(STATUS_TODO).listen((either) {
-      either
-          .fold((error) => print('Error getting todo tasks: ${error.message}'),
-              (snapshot) {
-        todoTasks.value = snapshot.docs;
-      });
-    });
-
-    // Escuchar tareas "in progress"
-    getNotesByStatus(STATUS_IN_PROGRESS).listen((either) {
-      either.fold(
-          (error) => print('Error getting in progress tasks: ${error.message}'),
-          (snapshot) {
-        inProgressTasks.value = snapshot.docs;
-      });
-    });
-
-    // Escuchar tareas "done"
-    getNotesByStatus(STATUS_DONE).listen((either) {
-      either
-          .fold((error) => print('Error getting done tasks: ${error.message}'),
-              (snapshot) {
-        doneTasks.value = snapshot.docs;
-      });
-    });
-  }
-
   Future<void> logOut() async {
     await _logOutUseCase.execute();
     Get.offAndToNamed(RoutesPaths.signInPage);
   }
 
-  // Función para forzar actualización
   void triggerRefresh() {
     refreshTrigger.value = !refreshTrigger.value;
   }

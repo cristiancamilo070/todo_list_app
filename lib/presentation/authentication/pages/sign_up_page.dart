@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:todo_list_app/core/themes/app_theme.dart';
 import 'package:todo_list_app/core/widgets/appbar/custom_app_bar.dart';
@@ -33,6 +34,29 @@ class SignUpPage extends GetView<AuthController> {
         CustomAppBar(
           title: 'SIGN_UP_HERE'.tr,
           showBackButton: true,
+        ),
+        heightSpace16,
+        Center(
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  AppTheme.colors.appPrimary.withOpacity(0.9),
+                  AppTheme.colors.appSecondary.withOpacity(0.7),
+                ],
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+              ),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            child: FaIcon(
+              FontAwesomeIcons.solidNoteSticky,
+              color: AppTheme.colors.white,
+              size: 90.r,
+            ),
+          ),
         ),
         heightSpace30,
         AppTextField(

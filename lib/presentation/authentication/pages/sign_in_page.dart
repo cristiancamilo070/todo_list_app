@@ -1,5 +1,8 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:todo_list_app/core/routes/app_routes.dart';
 import 'package:todo_list_app/core/themes/app_theme.dart';
@@ -34,8 +37,31 @@ class SignInPage extends GetView<AuthController> {
         CustomAppBar(
           title: 'WELCOME'.tr,
         ),
+        heightSpace16,
+        Center(
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  AppTheme.colors.appPrimary.withOpacity(0.9),
+                  AppTheme.colors.appSecondary.withOpacity(0.7),
+                ],
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+              ),
+              borderRadius: BorderRadius.circular(10.0),
+            ),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            child: FaIcon(
+              FontAwesomeIcons.solidNoteSticky,
+              color: AppTheme.colors.white,
+              size: 90.r,
+            ),
+          ),
+        ),
         heightSpace30,
-        AppTextField(
+        AppTextFormField(
           inputsParams: AppInputParameters(
             controller: controller.emailController,
             hintText: 'EMAIL'.tr,
@@ -43,11 +69,12 @@ class SignInPage extends GetView<AuthController> {
           ),
         ).paddingSymmetric(horizontal: 16.w),
         heightSpace30,
-        AppTextField(
+        AppTextFormField(
           inputsParams: AppInputParameters(
             controller: controller.passwordController,
             hintText: 'PASSWORD'.tr,
             inputType: AppInputType.password,
+            obscureText: true,
           ),
         ).paddingSymmetric(horizontal: 16.w),
       ],

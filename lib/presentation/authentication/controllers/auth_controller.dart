@@ -57,11 +57,12 @@ class AuthController extends BaseGetxController {
     final useCase = Get.find<SignupPasswordUseCase>();
     final result = await useCase.execute(LoginParams(email, password));
     result.fold((error) {
-      showErrorMessage('Error', error.message);
-    }, (userInfo) {
+      showErrorMessage('Error', 'Unexpected error');
+    }, (userInfo) async {
       debugPrint('userInfo: $userInfo.email');
 
       showSuccessMessage("WELCOME".tr, '');
+      await _mainController.getUserInfo(fromSignIn: true);
     });
   }
 
@@ -69,11 +70,13 @@ class AuthController extends BaseGetxController {
     final useCase = Get.find<SignInPasswordUseCase>();
     final result = await useCase.execute(LoginParams(email, password));
     result.fold((error) {
-      showErrorMessage('Error', error.message);
-    }, (userInfo) {
+      showErrorMessage('Error', 'Wrong email or password');
+    }, (userInfo) async {
       debugPrint('userInfo: $userInfo.email');
 
       showSuccessMessage("WELCOME".tr, '');
+
+      await _mainController.getUserInfo(fromSignIn: true);
     });
   }
 }
